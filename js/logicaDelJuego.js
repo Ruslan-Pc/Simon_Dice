@@ -12,11 +12,8 @@ class Juego{
     }
 
     inicializar(){
+        this.elegirColor = this.elegirColor.bind(this)
         btnEmpezar.classList.add('hide')
-    }
-
-    generarSecuencia(){
-        this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
         this.nivel = 1
         this.colores = {
             celeste,
@@ -26,8 +23,13 @@ class Juego{
         }
     }
 
+    generarSecuencia(){
+        this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
+    }
+
     siguienteNivel(){
         this.iluminarSecurncia()
+        this.agregarEventosClick()
     }
 
     transformarNumeroAColor(numero){
@@ -57,6 +59,17 @@ class Juego{
 
     apagarColor(color){
         this.colores[color].classList.remove('light')
+    }
+
+    agregarEventosClick(){
+        this.colores.celeste.addEventListener('click', this.elegirColor)
+        this.colores.violeta.addEventListener('click', this.elegirColor)
+        this.colores.naranja.addEventListener('click', this.elegirColor)
+        this.colores.verde.addEventListener('click', this.elegirColor)
+    }
+
+    elegirColor(ev){
+
     }
 }
 

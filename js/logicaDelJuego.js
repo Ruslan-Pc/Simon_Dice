@@ -3,10 +3,12 @@ const violeta = document.getElementById('violeta')
 const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
 const btnEmpezar = document.getElementById('btnEmpezar')
-const ULTIMO_NIVEL = 10
+const ULTIMO_NIVEL = 2
+
 
 class Juego{
     constructor(){
+        this.inicializar = this.inicializar.bind(this)
         this.inicializar()
         this.generarSecuencia()
         setTimeout(this.siguienteNivel, 500)
@@ -15,7 +17,7 @@ class Juego{
     inicializar(){
         this.siguienteNivel = this.siguienteNivel.bind(this)
         this.elegirColor = this.elegirColor.bind(this)
-        btnEmpezar.classList.add('hide')
+        this.toggleBtnEmpezar()
         this.nivel = 1
         this.colores = {
             celeste,
@@ -25,8 +27,16 @@ class Juego{
         }
     }
 
+    toggleBtnEmpezar(){
+        if (btnEmpezar.classList.contains('hide')) {
+            btnEmpezar.classList.remove('hide')
+        } else {
+            btnEmpezar.classList.add('hide')
+        }
+    }
+
     generarSecuencia(){
-        this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
+        this.secuencia = new Array(2).fill(0).map(n => Math.floor(Math.random() * 4))
     }
 
     siguienteNivel(){
@@ -101,14 +111,27 @@ class Juego{
                 this.nivel++
                 this.eliminarEventosClick()
                 if(this.nivel === (ULTIMO_NIVEL + 1)){
-
+                    this.ganoElJuego()
                 }else{                    
                     setTimeout(this.siguienteNivel,1500)
                 }
             }
         }else{
-
+            this.perdioElJuego()
         }
+    }
+
+    ganoElJuego(){
+        swal('Simon Dice de Colores', 'Felicidades, ganaste el juego!!!', 'success')
+        .then(this.inicializar)
+    }
+
+    perdioElJuego(){
+        swal('Simon Dice de Colores', 'Lo lamento, perdiste el juego!!!', 'error')
+        .then(() => {
+            this.eliminarEventosClick()
+            this.inicializar()
+        })
     }
 }
 

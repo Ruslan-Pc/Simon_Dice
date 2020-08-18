@@ -3,7 +3,7 @@ const violeta = document.getElementById('violeta')
 const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
 const btnEmpezar = document.getElementById('btnEmpezar')
-const ULTIMO_NIVEL = 2
+const ULTIMO_NIVEL = 10
 
 
 class Juego{
@@ -36,7 +36,7 @@ class Juego{
     }
 
     generarSecuencia(){
-        this.secuencia = new Array(2).fill(0).map(n => Math.floor(Math.random() * 4))
+        this.secuencia = new Array(10).fill(0).map(n => Math.floor(Math.random() * 4))
     }
 
     siguienteNivel(){

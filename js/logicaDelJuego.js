@@ -11,7 +11,7 @@ class Juego{
         this.inicializar = this.inicializar.bind(this)
         this.inicializar()
         this.generarSecuencia()
-        setTimeout(this.siguienteNivel, 500)
+        setTimeout(this.siguienteNivel, 400)
     }
 
     inicializar(){
@@ -74,13 +74,13 @@ class Juego{
     iluminarSecurncia(){
         for (let i = 0; i < this.nivel; i++) {
             const color = this.transformarNumeroAColor(this.secuencia[i])
-            setTimeout(() => this.iluminarColor(color), 1000*i);
+            setTimeout(() => this.iluminarColor(color), 800*i);
         }
     }
 
     iluminarColor(color){
         this.colores[color].classList.add('light')
-        setTimeout(() => this.apagarColor(color), 350);
+        setTimeout(() => this.apagarColor(color), 210);
     }
 
     apagarColor(color){
@@ -113,7 +113,7 @@ class Juego{
                 if(this.nivel === (ULTIMO_NIVEL + 1)){
                     this.ganoElJuego()
                 }else{                    
-                    setTimeout(this.siguienteNivel,1500)
+                    setTimeout(this.siguienteNivel,1200)
                 }
             }
         }else{
